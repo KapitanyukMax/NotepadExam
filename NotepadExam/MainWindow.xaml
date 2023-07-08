@@ -7,7 +7,92 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=local:MainViewModel}"
         Title="Notepad++" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <Window.Resources>
+        <Style TargetType="{x:Type MenuItem}">
+            <Setter Property="FontSize" Value="14"></Setter>
+        </Style>
+    </Window.Resources>
+    
+    <StackPanel>
+        <Menu>
+            <MenuItem Header="File">
+                <MenuItem Header="Create">
+                    <MenuItem.Icon>
+                        <Image Source="Images\Create.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Open">
+                    <MenuItem.Icon>
+                        <Image Source="Images\Open.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Save">
+                    <MenuItem Header="Save">
+                        <MenuItem.Icon>
+                            <Image Source="Images\Save.png"></Image>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="Save as">
+                        <MenuItem.Icon>
+                            <Image Source="Images\Save.png"></Image>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem>
+                <MenuItem Header="Close">
+                    <MenuItem.Icon>
+                        <Image Source="Images\Close.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Text">
+                <MenuItem Header="Copy">
+                    <MenuItem.Icon>
+                        <Image Source="Images\Copy.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Cut">
+                    <MenuItem.Icon>
+                        <Image Source="Images\Cut.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Paste">
+                    <MenuItem.Icon>
+                        <Image Source="Images\Paste.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Clear all">
+                    <MenuItem.Icon>
+                        <Image Source="Images\ClearAll.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Select all">
+                    <MenuItem.Icon>
+                        <Image Source="Images\SelectAll.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Undo">
+                    <MenuItem.Icon>
+                        <Image Source="Images\Undo.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Style">
+                <MenuItem Header="Font">
+                    <MenuItem.Icon>
+                        <Image Source="Images\Font.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Text color">
+                    <MenuItem.Icon>
+                        <Image Source="Images\TextColor.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Back color" Command="{Binding Command}">
+                    <MenuItem.Icon>
+                        <Image Source="Images\BackColor.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+    </StackPanel>
 </Window>
