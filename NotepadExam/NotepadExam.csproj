@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+	<UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,8 +14,8 @@
     <Resource Include="Images\Close.png" />
     <Resource Include="Images\Copy.png" />
     <Resource Include="Images\Cut.png" />
-	<Resource Include="Images\Font.png" />
     <Resource Include="Images\Create.png" />
+    <Resource Include="Images\Font.png" />
     <Resource Include="Images\Open.png" />
     <Resource Include="Images\Paste.png" />
     <Resource Include="Images\Redo.png" />

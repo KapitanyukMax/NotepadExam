@@ -2,8 +2,19 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Forms;
+
+using MessageBox = System.Windows.MessageBox;
+using RichTextBox = System.Windows.Controls.RichTextBox;
+using DataFormats = System.Windows.DataFormats;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
+using System.Windows.Media;
+using System.Diagnostics;
 
 namespace NotepadExam
 {
@@ -97,6 +108,15 @@ namespace NotepadExam
             CreateFile();
         }
 
+        private RichTextBox? GetCurrentRTB()
+        {
+            if (SelectedTabIndex == -1)
+                return null;
+
+            return tabs[SelectedTabIndex].Content as RichTextBox ??
+                new RichTextBox { Margin = new(10) };
+        }
+
         private void CreateFile()
         {
             int counter = 1;
@@ -125,79 +145,184 @@ namespace NotepadExam
             OpenFileDialog dialog = new();
             if (dialog.ShowDialog() ?? false)
             {
-                tabFiles.Add(new FileInfo(dialog.FileName));
+                var rtb = new RichTextBox { Margin = new(10) };
+
+                try
+                {
+                    using FileStream stream = new(dialog.FileName, FileMode.Open);
+                    TextRange range = new(rtb.Document.ContentStart, rtb.Document.ContentEnd);
+                    range.Load(stream, DataFormats.Rtf);
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("File is used by another process!");
+                    return;
+                }
 
                 Tabs.Add(new TabItem
                 {
                     Header = Path.GetFileName(dialog.FileName),
-                    Content = new RichTextBox { Margin = new(10) }
+                    Content = rtb
                 });
+
+                tabFiles.Add(new(dialog.FileName));
             }
         }
 
         private void SaveFile()
         {
+            var rtb = GetCurrentRTB();
+            if (rtb == null)
+                return;
 
+            using FileStream stream = tabFiles[SelectedTabIndex].OpenWrite();
+            TextRange range = new(rtb.Document.ContentStart, rtb.Document.ContentEnd);
+            range.Save(stream, DataFormats.Rtf);
         }
 
         private void SaveFileAs()
         {
+            var rtb = GetCurrentRTB();
+            if (rtb == null)
+                return;
 
+            SaveFileDialog dialog = new();
+            if (dialog.ShowDialog() ?? false)
+            {
+                using FileStream stream = new(dialog.FileName, FileMode.Create);
+                TextRange range = new(rtb.Document.ContentStart, rtb.Document.ContentEnd);
+                range.Save(stream, DataFormats.Rtf);
+            }
         }
 
         private void CloseFile()
         {
+            if (SelectedTabIndex == -1)
+                return;
 
+            var res = MessageBox.Show("Do you want to save changes?",
+                "Save changes", MessageBoxButton.YesNo);
+
+            if (res == MessageBoxResult.Yes)
+                SaveFile();
+
+            tabFiles.RemoveAt(SelectedTabIndex);
+            tabs.RemoveAt(SelectedTabIndex);
         }
 
         private void CopySelectedText()
         {
+            var rtb = GetCurrentRTB();
+            if (rtb == null)
+                return;
 
+            rtb.Copy();
         }
 
         private void CutSelectedText()
         {
+            var rtb = GetCurrentRTB();
+            if (rtb == null)
+                return;
 
+            rtb.Cut();
         }
 
         private void PasteText()
         {
-            
+            var rtb = GetCurrentRTB();
+            if (rtb == null)
+                return;
+
+            rtb.Paste();
         }
 
         private void ClearAllText()
         {
+            var rtb = GetCurrentRTB();
+            if (rtb == null)
+                return;
 
+            rtb.SelectAll();
+            rtb.Selection.Text = string.Empty;
         }
 
         private void SelectAllText()
         {
+            var rtb = GetCurrentRTB();
+            if (rtb == null)
+                return;
 
+            rtb.SelectAll();
         }
 
         private void Undo()
         {
+            var rtb = GetCurrentRTB();
+            if (rtb == null)
+                return;
 
+            rtb.Undo();
         }
 
         private void Redo()
         {
+            var rtb = GetCurrentRTB();
+            if (rtb == null)
+                return;
 
+            rtb.Redo();
         }
 
         private void EditFont()
         {
+            var rtb = GetCurrentRTB();
+            if (rtb == null)
+                return;
 
+            FontDialog fd = new FontDialog();
+            var result = fd.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                Debug.WriteLine(fd.Font);
+
+                rtb.Selection.ApplyPropertyValue(TextElement.FontFamilyProperty,
+                    new FontFamily(fd.Font.Name));
+                rtb.Selection.ApplyPropertyValue(TextElement.FontSizeProperty,
+                    fd.Font.Size * 96.0 / 72.0);
+                rtb.Selection.ApplyPropertyValue(TextElement.FontWeightProperty,
+                    fd.Font.Bold ? FontWeights.Bold : FontWeights.Regular);
+                rtb.Selection.ApplyPropertyValue(TextElement.FontStyleProperty,
+                    fd.Font.Italic ? FontStyles.Italic : FontStyles.Normal);
+            }
         }
 
         private void EditTextColor()
         {
+            var rtb = GetCurrentRTB();
+            if (rtb == null)
+                return;
 
+            ColorDialog cd = new ColorDialog();
+            var result = cd.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+                rtb.Selection.ApplyPropertyValue(TextElement.ForegroundProperty,
+                    new SolidColorBrush(Color.FromArgb(
+                        cd.Color.A, cd.Color.R, cd.Color.G, cd.Color.B)));
         }
 
         private void EditBackColor()
         {
+            var rtb = GetCurrentRTB();
+            if (rtb == null)
+                return;
 
+            ColorDialog cd = new ColorDialog();
+            var result = cd.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+                rtb.Selection.ApplyPropertyValue(TextElement.BackgroundProperty,
+                    new SolidColorBrush(Color.FromArgb(
+                        cd.Color.A, cd.Color.R, cd.Color.G, cd.Color.B)));
         }
     }
 }
