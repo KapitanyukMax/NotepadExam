@@ -9,87 +9,109 @@
         Title="Notepad++" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="{x:Type MenuItem}">
-            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="FontSize" Value="14"/>
         </Style>
     </Window.Resources>
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding CreateFileCommand}" Modifiers="Ctrl" Key="N"/>
+        <KeyBinding Command="{Binding OpenFileCommand}" Modifiers="Ctrl" Key="O"/>
+        <KeyBinding Command="{Binding SaveFileCommand}" Modifiers="Ctrl" Key="S"/>
+        <KeyBinding Command="{Binding CopySelectedTextCommand}" Modifiers="Ctrl" Key="C"/>
+        <KeyBinding Command="{Binding CutSelectedTextCommand}" Modifiers="Ctrl" Key="X"/>
+        <KeyBinding Command="{Binding PasteTextCommand}" Modifiers="Ctrl" Key="V"/>
+        <KeyBinding Command="{Binding ClearAllTextCommand}" Key="Delete"/>
+        <KeyBinding Command="{Binding SelectAllTextCommand}" Modifiers="Ctrl" Key="A"/>
+        <KeyBinding Command="{Binding UndoCommand}" Modifiers="Ctrl" Key="Z"/>
+        <KeyBinding Command="{Binding RedoCommand}" Modifiers="Ctrl" Key="Y"/>
+    </Window.InputBindings>
     
     <StackPanel>
         <Menu>
             <MenuItem Header="File">
-                <MenuItem Header="Create">
+                <MenuItem Header="Create" Command="{Binding CreateFileCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Create.png"></Image>
+                        <Image Source="Images\Create.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Open">
+                <MenuItem Header="Open" Command="{Binding OpenFileCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Open.png"></Image>
+                        <Image Source="Images\Open.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Save">
-                    <MenuItem Header="Save">
+                    <MenuItem.Icon>
+                        <Image Source="Images\Save.png"/>
+                    </MenuItem.Icon>
+
+                    <MenuItem Header="Save" Command="{Binding SaveFileCommand}">
                         <MenuItem.Icon>
-                            <Image Source="Images\Save.png"></Image>
+                            <Image Source="Images\Save.png"/>
                         </MenuItem.Icon>
                     </MenuItem>
-                    <MenuItem Header="Save as">
+                    <MenuItem Header="Save as" Command="{Binding SaveFileAsCommand}">
                         <MenuItem.Icon>
-                            <Image Source="Images\Save.png"></Image>
+                            <Image Source="Images\Save.png"/>
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
-                <MenuItem Header="Close">
+                <MenuItem Header="Close" Command="{Binding CloseFileCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Close.png"></Image>
+                        <Image Source="Images\Close.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Text">
-                <MenuItem Header="Copy">
+                <MenuItem Header="Copy" Command="{Binding CopySelectedTextCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Copy.png"></Image>
+                        <Image Source="Images\Copy.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Cut">
+                <MenuItem Header="Cut" Command="{Binding CutSelectedTextCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Cut.png"></Image>
+                        <Image Source="Images\Cut.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Paste">
+                <MenuItem Header="Paste" Command="{Binding PasteTextCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Paste.png"></Image>
+                        <Image Source="Images\Paste.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Clear all">
+                <MenuItem Header="Clear all" Command="{Binding ClearAllTextCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\ClearAll.png"></Image>
+                        <Image Source="Images\ClearAll.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Select all">
+                <MenuItem Header="Select all" Command="{Binding SelectAllTextCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\SelectAll.png"></Image>
+                        <Image Source="Images\SelectAll.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Undo">
+                <MenuItem Header="Undo" Command="{Binding UndoCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Undo.png"></Image>
+                        <Image Source="Images\Undo.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Redo" Command="{Binding RedoCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="Images\Redo.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Style">
-                <MenuItem Header="Font">
+            <MenuItem Header="Edit">
+                <MenuItem Header="Font" Command="{Binding EditFontCommand}">
                     <MenuItem.Icon>
                         <Image Source="Images\Font.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Text color">
+                <MenuItem Header="Text color" Command="{Binding EditTextColorCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\TextColor.png"></Image>
+                        <Image Source="Images\TextColor.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Back color" Command="{Binding Command}">
+                <MenuItem Header="Back color" Command="{Binding EditBackColorCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\BackColor.png"></Image>
+                        <Image Source="Images\BackColor.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>

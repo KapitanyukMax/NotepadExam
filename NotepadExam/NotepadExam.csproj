@@ -21,6 +21,7 @@
     <Resource Include="Images\Create.png" />
     <Resource Include="Images\Open.png" />
     <Resource Include="Images\Paste.png" />
+    <Resource Include="Images\Redo.png" />
     <Resource Include="Images\Save.png" />
     <Resource Include="Images\SelectAll.png" />
     <Resource Include="Images\TextColor.png" />
