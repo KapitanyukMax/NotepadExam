@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PropertyChanged.Fody" Version="4.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Images\BackColor.png" />
     <Resource Include="Images\ClearAll.png" />
     <Resource Include="Images\Close.png" />

@@ -3,11 +3,11 @@ using System.Windows.Input;
 
 namespace NotepadExam
 {
-    class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
-        private Action<object?> execute;
+        private readonly Action<object?> execute;
 
-        private Func<object?, bool>? canExecute;
+        private readonly Func<object?, bool>? canExecute;
 
         public RelayCommand(Action<object?> execute, Func<object?, bool>? canExecute = null)
         {
@@ -15,7 +15,11 @@ namespace NotepadExam
             this.canExecute = canExecute;
         }
 
-        public event EventHandler? CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged
+        {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
+        }
 
         public bool CanExecute(object? parameter)
         {

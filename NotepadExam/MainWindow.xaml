@@ -26,8 +26,8 @@
         <KeyBinding Command="{Binding RedoCommand}" Modifiers="Ctrl" Key="Y" />
     </Window.InputBindings>
     
-    <StackPanel>
-        <Menu>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
                 <MenuItem Header="Create" Command="{Binding CreateFileCommand}">
                     <MenuItem.Icon>
@@ -117,7 +117,7 @@
             </MenuItem>
         </Menu>
 
-        <ToolBar Height="30">
+        <ToolBar DockPanel.Dock="Top" Height="30">
             <Button ToolTip="Create file"
                     Command="{Binding CreateFileCommand}">
                 <Image Source="Images\Create.png" />
@@ -176,5 +176,8 @@
                 <Image Source="Images\BackColor.png" />
             </Button>
         </ToolBar>
-    </StackPanel>
+
+        <TabControl Margin="5" ItemsSource="{Binding Tabs}"
+                    SelectedIndex="{Binding SelectedTabIndex}" />
+    </DockPanel>
 </Window>
