@@ -9,21 +9,21 @@
         Title="Notepad++" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="{x:Type MenuItem}">
-            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontSize" Value="14" />
         </Style>
     </Window.Resources>
 
     <Window.InputBindings>
-        <KeyBinding Command="{Binding CreateFileCommand}" Modifiers="Ctrl" Key="N"/>
-        <KeyBinding Command="{Binding OpenFileCommand}" Modifiers="Ctrl" Key="O"/>
-        <KeyBinding Command="{Binding SaveFileCommand}" Modifiers="Ctrl" Key="S"/>
-        <KeyBinding Command="{Binding CopySelectedTextCommand}" Modifiers="Ctrl" Key="C"/>
-        <KeyBinding Command="{Binding CutSelectedTextCommand}" Modifiers="Ctrl" Key="X"/>
-        <KeyBinding Command="{Binding PasteTextCommand}" Modifiers="Ctrl" Key="V"/>
-        <KeyBinding Command="{Binding ClearAllTextCommand}" Key="Delete"/>
-        <KeyBinding Command="{Binding SelectAllTextCommand}" Modifiers="Ctrl" Key="A"/>
-        <KeyBinding Command="{Binding UndoCommand}" Modifiers="Ctrl" Key="Z"/>
-        <KeyBinding Command="{Binding RedoCommand}" Modifiers="Ctrl" Key="Y"/>
+        <KeyBinding Command="{Binding CreateFileCommand}" Modifiers="Ctrl" Key="N" />
+        <KeyBinding Command="{Binding OpenFileCommand}" Modifiers="Ctrl" Key="O" />
+        <KeyBinding Command="{Binding SaveFileCommand}" Modifiers="Ctrl" Key="S" />
+        <KeyBinding Command="{Binding CopySelectedTextCommand}" Modifiers="Ctrl" Key="C" />
+        <KeyBinding Command="{Binding CutSelectedTextCommand}" Modifiers="Ctrl" Key="X" />
+        <KeyBinding Command="{Binding PasteTextCommand}" Modifiers="Ctrl" Key="V" />
+        <KeyBinding Command="{Binding ClearAllTextCommand}" Key="Delete" />
+        <KeyBinding Command="{Binding SelectAllTextCommand}" Modifiers="Ctrl" Key="A" />
+        <KeyBinding Command="{Binding UndoCommand}" Modifiers="Ctrl" Key="Z" />
+        <KeyBinding Command="{Binding RedoCommand}" Modifiers="Ctrl" Key="Y" />
     </Window.InputBindings>
     
     <StackPanel>
@@ -31,90 +31,150 @@
             <MenuItem Header="File">
                 <MenuItem Header="Create" Command="{Binding CreateFileCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Create.png"/>
+                        <Image Source="Images\Create.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Open" Command="{Binding OpenFileCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Open.png"/>
+                        <Image Source="Images\Open.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Save">
                     <MenuItem.Icon>
-                        <Image Source="Images\Save.png"/>
+                        <Image Source="Images\Save.png" />
                     </MenuItem.Icon>
 
                     <MenuItem Header="Save" Command="{Binding SaveFileCommand}">
                         <MenuItem.Icon>
-                            <Image Source="Images\Save.png"/>
+                            <Image Source="Images\Save.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                     <MenuItem Header="Save as" Command="{Binding SaveFileAsCommand}">
                         <MenuItem.Icon>
-                            <Image Source="Images\Save.png"/>
+                            <Image Source="Images\Save.png" />
                         </MenuItem.Icon>
                     </MenuItem>
                 </MenuItem>
                 <MenuItem Header="Close" Command="{Binding CloseFileCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Close.png"/>
+                        <Image Source="Images\Close.png" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Text">
                 <MenuItem Header="Copy" Command="{Binding CopySelectedTextCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Copy.png"/>
+                        <Image Source="Images\Copy.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Cut" Command="{Binding CutSelectedTextCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Cut.png"/>
+                        <Image Source="Images\Cut.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Paste" Command="{Binding PasteTextCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Paste.png"/>
+                        <Image Source="Images\Paste.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Clear all" Command="{Binding ClearAllTextCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\ClearAll.png"/>
+                        <Image Source="Images\ClearAll.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Select all" Command="{Binding SelectAllTextCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\SelectAll.png"/>
+                        <Image Source="Images\SelectAll.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Undo" Command="{Binding UndoCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Undo.png"/>
+                        <Image Source="Images\Undo.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Redo" Command="{Binding RedoCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Redo.png"/>
+                        <Image Source="Images\Redo.png" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Font" Command="{Binding EditFontCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\Font.png"/>
+                        <Image Source="Images\Font.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Text color" Command="{Binding EditTextColorCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\TextColor.png"/>
+                        <Image Source="Images\TextColor.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="Back color" Command="{Binding EditBackColorCommand}">
                     <MenuItem.Icon>
-                        <Image Source="Images\BackColor.png"/>
+                        <Image Source="Images\BackColor.png" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
         </Menu>
+
+        <ToolBar Height="30">
+            <Button ToolTip="Create file"
+                    Command="{Binding CreateFileCommand}">
+                <Image Source="Images\Create.png" />
+            </Button>
+            <Button ToolTip="Open file"
+                    Command="{Binding OpenFileCommand}">
+                <Image Source="Images\Open.png" />
+            </Button>
+            <Button ToolTip="Save file"
+                    Command="{Binding SaveFileCommand}">
+                <Image Source="Images\Save.png" />
+            </Button>
+            <Button ToolTip="Close file"
+                    Command="{Binding CloseFileCommand}">
+                <Image Source="Images\Close.png" />
+            </Button>
+            
+            <Separator />
+
+            <Button ToolTip="Copy selected text"
+                    Command="{Binding CopySelectedTextCommand}">
+                <Image Source="Images\Copy.png" />
+            </Button>
+            <Button ToolTip="Cut selected text"
+                    Command="{Binding CutSelectedTextCommand}">
+                <Image Source="Images\Cut.png" />
+            </Button>
+            <Button ToolTip="Paste text"
+                    Command="{Binding PasteTextCommand}">
+                <Image Source="Images\Paste.png" />
+            </Button>
+            <Button ToolTip="Clear all text"
+                    Command="{Binding ClearAllTextCommand}">
+                <Image Source="Images\ClearAll.png" />
+            </Button>
+            <Button ToolTip="Select all text"
+                    Command="{Binding SelectAllTextCommand}">
+                <Image Source="Images\SelectAll.png" />
+            </Button>
+            <Button ToolTip="Undo" Command="{Binding UndoCommand}">
+                <Image Source="Images\Undo.png" />
+            </Button>
+            <Button ToolTip="Redo" Command="{Binding RedoCommand}">
+                <Image Source="Images\Redo.png" />
+            </Button>
+
+            <Separator />
+
+            <Button ToolTip="Edit font" Command="{Binding EditFontCommand}">
+                <Image Source="Images\Font.png" />
+            </Button>
+            <Button ToolTip="Edit text color" Command="{Binding EditTextColorCommand}">
+                <Image Source="Images\TextColor.png" />
+            </Button>
+            <Button ToolTip="Edit back color" Command="{Binding EditBackColorCommand}">
+                <Image Source="Images\BackColor.png" />
+            </Button>
+        </ToolBar>
     </StackPanel>
 </Window>

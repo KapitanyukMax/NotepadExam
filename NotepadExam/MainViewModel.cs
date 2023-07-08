@@ -119,7 +119,7 @@ namespace NotepadExam
 
         private void PasteText()
         {
-
+            
         }
 
         private void ClearAllText()
